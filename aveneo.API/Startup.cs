@@ -44,14 +44,20 @@ namespace aveneo.API
 
             app.UseMvc();
 
+            
+            
             app.UseRouting();
-
+            
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            // seeding database
+            using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                endpoints.MapControllers();
-            });
+                var context = serviceScope.ServiceProvider.GetService<DataContext>();
+                context.Database.Migrate();
+                context.EnsureDatabaseSeeded();
+            }
+            
         }
     }
 }
