@@ -32,6 +32,7 @@ namespace aveneo.API
             Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,9 +43,9 @@ namespace aveneo.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-            
+            app.UseMvc();
             
             app.UseRouting();
             
@@ -57,6 +58,7 @@ namespace aveneo.API
                 context.Database.Migrate();
                 context.EnsureDatabaseSeeded();
             }
+
             
         }
     }
