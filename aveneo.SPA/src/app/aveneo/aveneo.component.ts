@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { BusinessEntityService } from '../_services/businessEntity.service';
+
 
 @Component({
   selector: 'app-aveneo',
@@ -8,19 +9,29 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AveneoComponent implements OnInit {
 
-  buisnessEntity: any;
-
-  constructor(private http: HttpClient) { }
+  model: any = {};
+  constructor(private businessEntityService: BusinessEntityService) { }
 
   ngOnInit() {
-    this.getBusinessEntity();
+
   }
 
-  getBusinessEntity() {
-    this.http.get('https://localhost:44335/api/BusinessEntity/333333333/').subscribe(response => {
-    this.buisnessEntity = response;
-    }, error => {
-      console.log(error);
-      });
+
+
+  getSearchQuery() {
+    const temp = this.getDigits(this.model.searchQuery);
+    console.log(temp);
+    this.businessEntityService.getBusinessEntity(temp);
+  }
+
+  getDigits(stringCandidate: string): string {
+    let value = '';
+    const arrayFromStringCandidate = Array.from(stringCandidate);
+    for (let i = 0; i <= arrayFromStringCandidate.length; i++) {
+      if (arrayFromStringCandidate[i] >= '0' && arrayFromStringCandidate[i] <= '9') {
+        value += arrayFromStringCandidate[i];
+      }
+    }
+    return value;
   }
 }
