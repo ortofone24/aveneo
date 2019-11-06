@@ -54,7 +54,7 @@ namespace aveneo.API.Controllers
                 Url = resultHttpUrl
             };
 
-            //await _context.HttpHeaders.AddAsync(newHttpHeader);
+            await _context.HttpHeaders.AddAsync(newHttpHeader);
             await _context.SaveChangesAsync();
 
             if (result == null)
