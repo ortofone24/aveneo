@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using aveneo.API.Data;
 
 namespace aveneo.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20191106190537_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,54 +54,6 @@ namespace aveneo.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BusinessEntities");
-                });
-
-            modelBuilder.Entity("aveneo.API.Models.HttpHeaders", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Accept")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AcceptEncoding")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AcceptLanguage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Connection")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dnt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Host")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Origin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Referer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecFetchMode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecFetchSite")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserAgent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HttpHeaders");
                 });
 #pragma warning restore 612, 618
         }

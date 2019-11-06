@@ -14,6 +14,8 @@ namespace aveneo.API.Data
 
         }
 
-        public DbSet<BusinessEntity> BusinessEntities{ get; set; }
+        public DbSet<BusinessEntity> BusinessEntities { get; set; }
+
+        public DbSet<HttpHeaders> HttpHeaders { get; set; }
     }
 }

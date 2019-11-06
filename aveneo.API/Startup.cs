@@ -33,6 +33,7 @@ namespace aveneo.API
             services.AddControllers();
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddCors();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +45,7 @@ namespace aveneo.API
             }
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
+                        
             app.UseMvc();
             
             app.UseRouting();

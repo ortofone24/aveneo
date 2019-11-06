@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BusinessEntityService } from '../_services/businessEntity.service';
+import { delay } from 'q';
+
 
 
 @Component({
@@ -7,21 +9,31 @@ import { BusinessEntityService } from '../_services/businessEntity.service';
   templateUrl: './aveneo.component.html',
   styleUrls: ['./aveneo.component.css']
 })
-export class AveneoComponent implements OnInit {
+export class AveneoComponent {
 
   model: any = {};
-  constructor(private businessEntityService: BusinessEntityService) { }
+  businessEntitiesResponse: any;
+  errorMessage = '';
 
-  ngOnInit() {
+  constructor(private businessEntityService: BusinessEntityService) {}
 
+  log(x) {
+    console.log(x);
   }
 
-
-
   getSearchQuery() {
+    this.errorMessage = '';
     const temp = this.getDigits(this.model.searchQuery);
     console.log(temp);
-    this.businessEntityService.getBusinessEntity(temp);
+    this.businessEntityService.getBusinessEntity(temp)
+    .subscribe(
+      data => {
+        this.businessEntitiesResponse = data;
+      }, (err) => {
+        console.log(err);
+        this.errorMessage = 'Nie znaleziono takiego wpisu';
+      }
+    );
   }
 
   getDigits(stringCandidate: string): string {

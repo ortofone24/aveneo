@@ -9,8 +9,8 @@ using aveneo.API.Data;
 namespace aveneo.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191023111542_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191106192943_HttpHeaders")]
+    partial class HttpHeaders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,54 @@ namespace aveneo.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BusinessEntities");
+                });
+
+            modelBuilder.Entity("aveneo.API.Models.HttpHeaders", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Accept")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AcceptEncoding")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AcceptLanguage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Connection")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Dnt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Host")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Origin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Referer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecFetchMode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecFetchSite")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HttpHeaders");
                 });
 #pragma warning restore 612, 618
         }

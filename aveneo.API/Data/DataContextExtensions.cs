@@ -46,10 +46,65 @@ namespace aveneo.API.Data
                         KRS = "7777777777",
                         NIP = "8888888888",
                         REGON = "999999999"
+                    },
+                    new BusinessEntity()
+                    {
+                        Name = "SampleName4",
+                        Street = "SampleStreet4",
+                        StreetNumber = 3,
+                        PostCode = "32-313",
+                        City = "SampleCity3",
+                        KRS = "1234567890",
+                        NIP = "5555544444",
+                        REGON = "987654321"
+                    },
+                    new BusinessEntity()
+                    {
+                        Name = "SampleName5",
+                        Street = "SampleStreet5",
+                        StreetNumber = 3,
+                        PostCode = "13-232",
+                        City = "SampleCity5",
+                        KRS = "1234333890",
+                        NIP = "5555563444",
+                        REGON = "981244321"
+                    },
+                    new BusinessEntity()
+                    {
+                        Name = "SampleName6",
+                        Street = "SampleStreet6",
+                        StreetNumber = 3,
+                        PostCode = "78-943",
+                        City = "SampleCity5",
+                        KRS = "1234333342",
+                        NIP = "2255433444",
+                        REGON = "331244321"
+                    },
+                    new BusinessEntity()
+                    {
+                        Name = "SampleName7",
+                        Street = "SampleStreet7",
+                        StreetNumber = 3,
+                        PostCode = "73-122",
+                        City = "SampleCity7",
+                        KRS = "4324341342",
+                        NIP = "2255323444",
+                        REGON = "551324321"
+                    },
+                    new BusinessEntity()
+                    {
+                        Name = "SampleName8",
+                        Street = "SampleStreet8",
+                        StreetNumber = 3,
+                        PostCode = "65-281",
+                        City = "SampleCity8",
+                        KRS = "4324886342",
+                        NIP = "2252123414",
+                        REGON = "500824321"
                     }
                 });
                 context.SaveChanges();
-                
+
             }
         }
     }
