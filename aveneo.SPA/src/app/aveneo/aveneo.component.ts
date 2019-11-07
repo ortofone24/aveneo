@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusinessEntityService } from '../_services/businessEntity.service';
-import { delay } from 'q';
+
 
 
 
@@ -17,20 +17,20 @@ export class AveneoComponent {
 
   constructor(private businessEntityService: BusinessEntityService) {}
 
-  log(x) {
-    console.log(x);
+  onKey(event: any) {
+    this.errorMessage = '';
+    this.businessEntitiesResponse = null;
   }
 
   getSearchQuery() {
     this.errorMessage = '';
+    this.businessEntitiesResponse = null;
     const temp = this.getDigits(this.model.searchQuery);
-    console.log(temp);
     this.businessEntityService.getBusinessEntity(temp)
     .subscribe(
       data => {
         this.businessEntitiesResponse = data;
       }, (err) => {
-        console.log(err);
         this.errorMessage = 'Nie znaleziono takiego wpisu';
       }
     );

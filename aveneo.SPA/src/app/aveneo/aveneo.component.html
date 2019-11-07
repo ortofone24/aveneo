@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
     <form #searchForm="ngForm"
           class="form-inline mt-2 mt-md-0"
           (ngSubmit)="getSearchQuery()">        
@@ -7,7 +7,8 @@
                 type="text" placeholder="NIP/REGON/KRS" aria-label="Search" 
                 [(ngModel)]="model.searchQuery"
                 name="searchQuery" required  
-                (change)="log(searchQuery)"
+                (keyup)="onKey($event)"
+                maxlength="14"
                 pattern="(?:^PL\d{10}$)|(?:^\d{3}(-)\d{3}(-)\d{2}(-)\d{2})$|(^\d{9})$|(^\d{10})$|(^\d{14})$">
         <button [disabled]="!searchForm.valid"
                 class="btn btn-outline-success my-2 my-sm-0"
@@ -15,31 +16,52 @@
         </button>
     </form>
 </div>
-    
-<div class="container" *ngIf="businessEntitiesResponse != null">
-    <h1>blablabal</h1>
-    <ul>
-       <li name="city">zz {{ businessEntitiesResponse?.postCode }}</li>
-    </ul>
+
+<!--Display data-->
+<div class="container mt-4" *ngIf="businessEntitiesResponse != null">
+    <form>
+        <div class="form-group">
+            <label for="inputAddress2">Nazwa</label>
+            <input type="text" class="form-control" id="inputAddress2" value="{{ businessEntitiesResponse?.name }}">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <label for="inputStreet">Ulica</label>
+                <input type="text" class="form-control" id="inputStreet" value="{{ businessEntitiesResponse?.street }}">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputNumber">Nr</label>
+                <input type="text" class="form-control" id="inputNumber" value="{{ businessEntitiesResponse?.streetNumber }}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputZipCode">Kod pocztowy</label>
+                <input type="text" class="form-control" id="inputZipCode" value="{{ businessEntitiesResponse?.postCode }}">
+            </div>
+            <div class="form-group col-md-8">
+                <label for="inputCity">Miasto</label>
+                <input type="text" class="form-control" id="inputCity" value="{{ businessEntitiesResponse?.city }}">
+            </div>
+        </div>
+    </form>
 </div>
+<!--Display data end-->
     
-<div id="mydiv" *ngIf="searchQuery.touched && !searchQuery.valid">
+<div *ngIf="searchQuery.touched && !searchQuery.valid">
     <div *ngIf="searchQuery.errors.required">        
         <p class="alert alert-danger text-center mt-2">Pole jest wymagane</p>
     </div>
     <div *ngIf="searchQuery.errors.pattern">
-            <p class="alert alert-danger text-center mt-2">
+        <p class="alert alert-danger text-center mt-2">
                 Musisz podać zgodny format<br>
                 Dla KRS 10 cyfr<br>
                 Dla REGON 9 lub 14 cyfr<br>
                 Dla NIP 10 cyfr opcjonalnie PL7777777777 lub 777-777-77-77
-            </p>
+        </p>
     </div>
 </div>
 
 <div *ngIf="errorMessage.length > 0">
-        <p class="alert alert-danger text-center mt-2">{{errorMessage}}</p>
+    <p class="alert alert-danger text-center mt-2">{{ errorMessage }}</p>
 </div>
-
-
-
