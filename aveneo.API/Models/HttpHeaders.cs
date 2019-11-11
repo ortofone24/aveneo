@@ -8,6 +8,7 @@ namespace aveneo.API.Models
     public class HttpHeaders
     {
         public int Id { get; set; }
+        public DateTime LoginDate { get; set; }
         public string Accept { get; set; }
         public string AcceptEncoding { get; set; }
         public string AcceptLanguage { get; set; }
@@ -20,8 +21,5 @@ namespace aveneo.API.Models
         public string SecFetchSite { get; set; }
         public string SecFetchMode { get; set; }
         public string Url { get; set; }
-
-        // data 
-        // sessionId
     }
 }
