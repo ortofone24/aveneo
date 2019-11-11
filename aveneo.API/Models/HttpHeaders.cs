@@ -20,5 +20,8 @@ namespace aveneo.API.Models
         public string SecFetchSite { get; set; }
         public string SecFetchMode { get; set; }
         public string Url { get; set; }
+
+        // data 
+        // sessionId
     }
 }

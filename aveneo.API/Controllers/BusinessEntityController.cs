@@ -36,26 +36,42 @@ namespace aveneo.API.Controllers
                                         x.REGON.Equals(searchQuery));
 
             var resultHttpUrl = _httpContext.HttpContext.Request.Path.ToString();
+                        
             var resultHeaders = _httpContext.HttpContext.Request.Headers.ToList();
+            
+            string temporary = string.Join(",", resultHeaders.ToArray());
 
-            var newHttpHeader = new HttpHeaders
+            string value = "[Url: " + resultHttpUrl + "], " + temporary;
+
+            // try get ...
+            
+            try
             {
-                Accept = resultHeaders[0].Value,
-                AcceptEncoding = resultHeaders[1].Value,
-                AcceptLanguage = resultHeaders[2].Value,
-                Connection = resultHeaders[3].Value,
-                Host = resultHeaders[4].Value,
-                Referer = resultHeaders[5].Value,
-                UserAgent = resultHeaders[6].Value,
-                Origin = resultHeaders[7].Value,
-                Dnt = resultHeaders[8].Value,
-                SecFetchSite = resultHeaders[9].Value,
-                SecFetchMode = resultHeaders[10].Value,
-                Url = resultHttpUrl
-            };
+                var newHttpHeader = new HttpHeaders
+                {
+                    Accept = resultHeaders[0].Value,
+                    AcceptEncoding = resultHeaders[1].Value,
+                    AcceptLanguage = resultHeaders[2].Value,
+                    Connection = resultHeaders[3].Value,
+                    Host = resultHeaders[4].Value,
+                    Referer = resultHeaders[5].Value,
+                    UserAgent = resultHeaders[6].Value,
+                    Origin = resultHeaders[7].Value,
+                    Dnt = resultHeaders[8].Value,
+                    SecFetchSite = resultHeaders[9].Value,
+                    SecFetchMode = resultHeaders[10].Value,
+                    Url = resultHttpUrl
+                };
+                await _context.HttpHeaders.AddAsync(newHttpHeader);
+            }
+            catch (Exception ex)
+            {
+                var temp = ex.Message;
+            }
+            
 
-            await _context.HttpHeaders.AddAsync(newHttpHeader);
-            await _context.SaveChangesAsync();
+            
+            //await _context.SaveChangesAsync();
 
             if (result == null)
             {
