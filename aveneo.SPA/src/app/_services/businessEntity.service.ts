@@ -16,7 +16,7 @@ private baseUrl = 'https://localhost:44335/api/BusinessEntity/';
 private baseUrl2 = 'http://ortofone-001-site1.htempurl.com/api/BusinessEntity/';
 
 getBusinessEntity(searchQuery): Observable<any> {
-  return this.http.get(this.baseUrl + searchQuery)
+  return this.http.get(this.baseUrl2 + searchQuery)
   .pipe(
     catchError(err => {
       return throwError(err);
